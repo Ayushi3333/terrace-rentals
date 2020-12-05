@@ -1,0 +1,25 @@
+<div class="d-flex">
+  <div class="container mx-auto align-self-center m-5" style="width: 700px;">
+    <h1 class="text-center">Welcome to Rent a Terrace!</h1>
+    <% @terraces.each do |terrace| %>
+        <div class="card mb-3 mx-4">
+            <div class="card-body p-0">
+              <%= show_terrace_photo(terrace) %>
+                <div class="p-3">
+                  <div class="d-flex justify-content-between">
+                    <h5 class="card-title"><%= link_to terrace.description, terrace_path(terrace) %></h5>
+                    <p class="card-text">€ <%= terrace.price %></p>
+                  </div>
+                  <p class="card-text">Floor: <%= terrace.floor %></p>
+                  <p class="card-text">Size: <%= terrace.size %>m²</p>
+                </div>
+            </div>
+        </div>
+    <% end %>
+  </div>
+  <div id="map"
+    style="width: 45%; height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>

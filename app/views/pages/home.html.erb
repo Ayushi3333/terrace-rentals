@@ -1,2 +1,17 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1471967183320-ee018f6e114a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80);">
+    <div class="container">
+        <h1 style="margin-top: -150px;">We help you find the best rooftop venue to host your party.</h1>
+        <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+            <div class="search-form-control form-group">
+                <input class="form-control string required" type="text" name="search[query]" id="flat_address" placeholder="Search by location" />
+                <button name="button" type="submit" class="btn btn-flat btn-height">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+        <h1>
+          <span id="banner-typed-text"></span>
+        </h1>
+        <a class="btn btn-flat mt-3" href="/terraces">Explore terraces</a>
+    </div>
+</div>
