@@ -4,7 +4,7 @@
     <% @terraces.each do |terrace| %>
         <div class="card mb-3 mx-4">
             <div class="card-body p-0">
-              <img class="card-img-top" src="https://source.unsplash.com/1600x900/?terrace" alt="Image of terrace">
+              <%= show_terrace_photo(terrace) %>
                 <div class="p-3">
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title"><%= link_to terrace.description, terrace_path(terrace) %></h5>
