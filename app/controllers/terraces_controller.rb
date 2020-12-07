@@ -12,6 +12,7 @@ class TerracesController < ApplicationController
 
   def show
     @terrace = Terrace.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
@@ -25,6 +26,24 @@ class TerracesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @terrace = Terrace.find(params[:id])
+  end
+
+  def update
+    @terrace = Terrace.find(params[:id])
+    @terrace.update(terrace_params)
+
+    redirect_to terrace_path(@terrace.id)
+  end
+
+  def destroy
+    @terrace = Terrace.find(params[:id])
+    @terrace.destroy
+
+    redirect_to terraces_path
   end
 
   private

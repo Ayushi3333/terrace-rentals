@@ -1,0 +1,13 @@
+<h1>Your bookings</h1>
+<div class="container">
+<% @bookings.each do |booking| %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= booking.terrace.description %></h5>
+        <p class="card-text"><%= booking.date %></p>
+        <p><%= booking.status %></p>
+      </div>
+</div>
+
+<% end %>
+</div>

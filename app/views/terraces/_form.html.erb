@@ -1,0 +1,5 @@
+<h2>Add date of event</h2>
+<%= simple_form_for [@terrace, @booking] do |b| %>
+  <%= b.input :date, as: :date %>
+  <%= b.button :submit %>
+<% end %>
