@@ -2,3 +2,14 @@
 @import "home";
 @import "new";
 @import "show";
+
+.list-terrace {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 650px){
+   .list-terrace{
+       display: block;
+   }
+}

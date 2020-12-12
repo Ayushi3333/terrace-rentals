@@ -4,7 +4,9 @@
   <p><%= @terrace.address %></p>
   <div class="mosaic">
     <img src="<%= cl_image_path(@terrace.photos.first.key) %>" alt="First image" class="tile">
-    <img src="<%= cl_image_path(@terrace.photos.second.key) %>" alt="Second image" class="tile">
+    <% if @terrace.photos[1] %>
+      <img src="<%= cl_image_path(@terrace.photos.second.key) %>" alt="Second image" class="tile">
+    <% end %>
     <% if @terrace.photos[2] %>
       <img src="<%= cl_image_path(@terrace.photos[2].key) %>" alt="Third image" class="tile">
     <% end %>

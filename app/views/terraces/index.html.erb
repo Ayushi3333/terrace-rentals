@@ -1,23 +1,20 @@
+<h3 class="ml-5">Rooftops near you</h3>
 <div class="d-flex">
-  <div class="container mx-auto align-self-center m-5" style="width: 700px;">
-    <h1 class="text-center">Welcome to Rent a Terrace!</h1>
+  <div class="container list-terrace mx-auto ml-5">
     <% @terraces.each do |terrace| %>
-        <div class="card mb-3 mx-4">
-            <div class="card-body p-0">
+        <div class="card card-list mb-3 mx-4 mt-3">
+            <div class="card-body ml-0 p-0 shadow bg-white rounded">
               <%= show_terrace_photo(terrace) %>
-                <div class="p-3">
+                <div class="pt-2 px-2">
                   <div class="d-flex justify-content-between">
-                    <h5 class="card-title"><%= link_to terrace.description, terrace_path(terrace) %></h5>
-                    <p class="card-text">€ <%= terrace.price %></p>
+                    <p class="card-title"><%= link_to terrace.description, terrace_path(terrace), class:"link-color" %></p>
                   </div>
-                  <p class="card-text">Floor: <%= terrace.floor %></p>
-                  <p class="card-text">Size: <%= terrace.size %>m²</p>
                 </div>
             </div>
         </div>
     <% end %>
   </div>
-  <div id="map"
+  <div id="map" class="mt-3"
     style="width: 45%; height: 600px;"
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
