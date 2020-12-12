@@ -1,5 +1,5 @@
-<h2>Add date of event</h2>
+<p>Book this rooftop now!</p>
 <%= simple_form_for [@terrace, @booking] do |b| %>
   <%= b.input :date, as: :date %>
-  <%= b.button :submit %>
+  <%= b.button :submit, class: "btn-flat" %>
 <% end %>
