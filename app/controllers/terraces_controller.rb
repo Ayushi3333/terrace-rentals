@@ -14,6 +14,10 @@ class TerracesController < ApplicationController
     @terrace = Terrace.find(params[:id])
     @booking = Booking.new
     @review = Review.new
+    @markers = [{
+      lat: @terrace.latitude,
+      lng: @terrace.longitude
+    }]
   end
 
   def new

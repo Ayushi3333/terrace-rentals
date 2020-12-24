@@ -2,6 +2,7 @@
 @import "home";
 @import "new";
 @import "show";
+@import "booking_index";
 
 .list-terrace {
    display: grid;
@@ -13,7 +14,7 @@
        display: block;
    }
    
-   #map {
+   .index-map {
       display: none;
    }
 }
