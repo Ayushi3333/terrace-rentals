@@ -1,13 +1,14 @@
-<h1>Your bookings</h1>
-<div class="container">
-<% @bookings.each do |booking| %>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= booking.terrace.description %></h5>
-        <p class="card-text"><%= booking.date %></p>
-        <p><%= booking.status %></p>
-      </div>
-</div>
 
-<% end %>
+<div class="container">
+  <h2>Your bookings</h2>
+  <% @bookings.each do |booking| %>
+      <div class="booking-card d-flex justify-content-start">
+        <%= cl_image_tag( booking.terrace.photos.first.key )%>
+        <div class="p-3">
+          <h5 class="card-title"><%= booking.terrace.description %></h5>
+          <p class="card-text"><%= booking.date.strftime("%d %b, %Y") %></p>
+          <p><%= booking.status %></p>
+        </div>
+      </div>
+  <% end %>
 </div>

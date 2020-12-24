@@ -43,6 +43,12 @@
     border-bottom-right-radius: 15px;
 }
 
+.show-map {
+    width: 50%;
+    height: 250px;
+    border-radius: 5px;
+}
+
 @media screen and (max-width: 650px){
     .mosaic{
         display: block;
@@ -50,6 +56,20 @@
     .tile{
         margin-bottom: 1rem;
         border-radius: 15px;
+    }
+    #reviews {
+        display: block !important;
+    }
+
+    .show-map {
+        height: 200px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .mapboxgl-canvas {
+        height: 200px !important;
+        width: 370 !important;
     }
 }
 
