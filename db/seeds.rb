@@ -11,6 +11,7 @@ Terrace.destroy_all
 addresses = ["Barcelona, Spain", "Paris, France", "Brussels, Belgium", "Amsterdam, Netherlands", "London, UK"]
 5.times do
   terraces = Terrace.new(
+    title: Faker::Book.title,
     description: Faker::Quotes::Shakespeare.hamlet_quote,
     size: rand(10..80),
     floor: rand(1..25),

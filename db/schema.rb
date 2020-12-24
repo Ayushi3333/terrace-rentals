@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_125530) do
+ActiveRecord::Schema.define(version: 2020_12_12_163800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,19 @@ ActiveRecord::Schema.define(version: 2020_12_06_125530) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "rating"
+    t.bigint "terrace_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["terrace_id"], name: "index_reviews_on_terrace_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "terraces", force: :cascade do |t|
-    t.string "description"
+    t.text "description"
     t.integer "size"
     t.integer "floor"
     t.integer "price"
@@ -57,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_125530) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
+    t.string "title"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,4 +86,6 @@ ActiveRecord::Schema.define(version: 2020_12_06_125530) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "terraces"
   add_foreign_key "bookings", "users"
+  add_foreign_key "reviews", "terraces"
+  add_foreign_key "reviews", "users"
 end
