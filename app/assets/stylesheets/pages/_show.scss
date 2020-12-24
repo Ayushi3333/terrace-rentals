@@ -45,8 +45,23 @@
 
 .show-map {
     width: 50%;
-    height: 250px;
+    height: 350px;
     border-radius: 5px;
+}
+
+.mapboxgl-canvas {
+    height: 350px !important;
+    width: 370 !important;
+}
+
+.booking-form {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 @media screen and (max-width: 650px){
@@ -71,8 +86,7 @@
         height: 200px !important;
         width: 370 !important;
     }
-}
-
-.border-gray {
-    border-color: 1px solid lightgray;
+    .terrace-responsive {
+        display: block !important;
+    }
 }

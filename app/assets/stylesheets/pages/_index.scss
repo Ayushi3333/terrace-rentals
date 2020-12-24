@@ -9,6 +9,10 @@
    grid-template-columns: 1fr 1fr 1fr;
 }
 
+.mapboxgl-canvas {
+   height: 600px !important;
+}
+
 @media screen and (max-width: 650px){
    .list-terrace{
        display: block;
