@@ -17,8 +17,8 @@
       <img src="<%= cl_image_path(@terrace.photos[4].key) %>" alt="Fifth image" class="tile">
     <% end %>
   </div>
-  <div class="d-flex pt-3">
-    <div class="container pl-0">
+  <div class="terrace-responsive d-flex pt-3">
+    <div class="container terrace-description pl-0">
       <p><%= @terrace.description %></p>
       <p><i class="fas fa-ruler"></i>  <%= @terrace.size %>m²</p>
       <p><i class="far fa-building"></i> <%= @terrace.floor %></p>
@@ -26,19 +26,19 @@
       <%= link_to "Update terrace details", edit_terrace_path(@terrace.id) %>
       <p><%= link_to "Delete terrace", terrace_path(@terrace.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
     </div>
-    <div class="container border-gray px-0">
+    <div class="container booking-form">
       <%= render "form" %>
     </div>
   </div>
   <div id="reviews" class="d-flex justify-content-between mt-2">
-    <div class="reviews-list mr-3 col-lg-7 col-sm-12 pl-0">
+    <div class="reviews-list col-lg-7 col-sm-12 pl-0">
     <h3>Reviews</h3>
     <% if @terrace.reviews.blank? %>
       Be the first to leave a review for <%= @terrace.title %>
     <% else %>
       <%= pluralize @terrace.reviews.size, "review" %>
       <% @terrace.reviews.each do |review| %>
-        <div class="card bg-light text-dark mb-2 pl-2 py-2 w-100 rounded">
+        <div class="card bg-light text-dark mb-2 pl-2 py-2 w-75 rounded">
           <p class="mb-1"><strong><%= review.content %></strong></p>
           <div class="d-flex justify-content-between align-items-end">
             <div>
