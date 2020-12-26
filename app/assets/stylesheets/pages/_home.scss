@@ -3,7 +3,7 @@
 .banner {
     background-size: cover;
     background-position: center;
-    height: 500px;
+    height: 600px;
     padding: 250px 0;
   }
   
@@ -39,7 +39,7 @@
   
   .search-form-control {
     position: relative;
-    width: 600px;
+    width: 40vw;
   }
   
   .search-form-control .btn {
@@ -66,4 +66,19 @@
   #map {
     position: sticky;
     top: 0;
+}
+
+.simple_form {
+  padding-left: 0px;
+}
+
+@media screen and (max-width: 650px){
+  .search-form-control {
+    position: relative;
+    width: 70vw;
   }
+
+  .instructions {
+    display: block;
+  }
+}

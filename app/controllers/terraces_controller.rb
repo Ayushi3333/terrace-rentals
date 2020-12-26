@@ -1,12 +1,28 @@
 class TerracesController < ApplicationController
   def index
     @terraces = Terrace.all
-    @markers = @terraces.geocoded.map do |terrace|
-      {
-        lat: terrace.latitude,
-        lng: terrace.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { terrace: terrace })
-      }
+    if params[:query].present?
+      @markers = @terraces.near(params[:query]).geocoded.map do |terrace|
+        {
+          lat: terrace.latitude,
+          lng: terrace.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { terrace: terrace })
+        }
+      end
+    else
+      @markers = @terraces.geocoded.map do |terrace|
+        {
+          lat: terrace.latitude,
+          lng: terrace.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { terrace: terrace })
+        }
+      end
+    end
+
+    if params[:query].present?
+      @terraces = Terrace.near(params[:query])
+    else
+      @terraces = Terrace.all
     end
   end
 
