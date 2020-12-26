@@ -23,15 +23,13 @@
       <p><i class="fas fa-ruler"></i>  <%= @terrace.size %>m²</p>
       <p><i class="far fa-building"></i> <%= @terrace.floor %></p>
       <p>€ <%= @terrace.price %></p>
-      <%= link_to "Update terrace details", edit_terrace_path(@terrace.id) %>
-      <p><%= link_to "Delete terrace", terrace_path(@terrace.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
     </div>
     <div class="container booking-form">
       <%= render "form" %>
     </div>
   </div>
   <div id="reviews" class="d-flex justify-content-between mt-2">
-    <div class="reviews-list col-lg-7 col-sm-12 pl-0">
+    <div class="reviews-list col-lg-7 col-sm-6 pl-0">
     <h3>Reviews</h3>
     <% if @terrace.reviews.blank? %>
       Be the first to leave a review for <%= @terrace.title %>
@@ -60,8 +58,10 @@
       <%= f.input :rating, collection: 1..5 %>
       <%= f.button :submit, class:"btn btn-flat mb-3" %>
     <% end %>
+     <%= link_to "Update terrace details", edit_terrace_path(@terrace.id) %>
+      <p><%= link_to "Delete terrace", terrace_path(@terrace.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
     </div>
-      <div id="map" class="show-map pr-3 mt-3 col-lg-5 col-sm-12"
+      <div id="map" class="show-map pr-3 mt-3 col-lg-5 col-sm-6"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
