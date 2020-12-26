@@ -70,6 +70,6 @@ class TerracesController < ApplicationController
   private
 
   def terrace_params
-    params.require(:terrace).permit(:description, :size, :floor, :price, :address, photos: [])
+    params.require(:terrace).permit(:title, :description, :size, :floor, :price, :address, photos: [])
   end
 end
