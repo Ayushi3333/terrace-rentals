@@ -4,8 +4,7 @@
         <form novalidate="novalidate" class="simple_form search w-100 col text-center hide-location" data-target="location.form" action="/terraces" accept-charset="UTF-8" method="get">
             <input name="utf8" type="hidden" value="&#x2713;" />
             <div class="search-form-control form-group" data-controller="algolia">
-            <input class="form-control string required" type="text" name="location" id="flat_address" placeholder="Search by location" data-target="location.location algolia.location">
-            
+            <input class="form-control string required" type="text" name="query" id="search_query" placeholder="Search by location" data-target="location.location algolia.location">
                 <button name="button" type="submit" class="btn btn-flat btn-height">
                     <i class="fas fa-search"></i>
                 </button>
@@ -16,4 +15,30 @@
         </h1>
         <a class="btn btn-flat mt-3" href="/terraces">Explore terraces</a>
     </div>
+</div>
+<h2 class="container mt-3">How it works</h2>
+<div class="container instructions d-flex justify-content-between pt-3 mb-3">
+  
+  <div class="card-terrace mx-2">
+    <img src="https://image.freepik.com/free-vector/observation-desk-city-building-roof-vector_1441-3461.jpg" alt="Rooftop Image">
+    <p class="p-2"><strong>Find a terrace that suits your needs near you</strong></p>
+    <p class="px-2 mb-1"><i class="fas fa-check" style="color:#bd00ff;"></i> Breathtaking views</p>
+    <p class="px-2 mb-1"><i class="fas fa-check" style="color:#bd00ff;"></i> Spacious rooftops</p>
+    <p class="px-2 mb-1"><i class="fas fa-check" style="color:#bd00ff;"></i> Fully affordable</p>
+  </div>
+  <div class="card-terrace mx-2">
+    <img src="https://image.freepik.com/free-vector/appointment-booking-with-calendar_23-2148553008.jpg" alt="Image of calendar and clock">
+    <p class="p-2">Check if its availabile on the date of your next event</p>
+    <p class="px-2 mb-1">Book fast to avoid disappointment!</p>
+  </div>
+  <div class="card-terrace mx-2">
+    <img src="https://image.freepik.com/free-vector/appointment-booking-with-calendar_23-2148546548.jpg" alt="Image of calendar">
+    <p class="p-2">Make a booking request and only pay once it's accepted</p>
+     <p class="px-2 mb-1"><i class="fas fa-check" style="color:#bd00ff;"></i> No hassle booking</p>
+    <p class="px-2 mb-1"><i class="fas fa-check" style="color:#bd00ff;"></i> Free cancellation before 48 hours if your plans change</p>
+  </div>
+  <div class="card-terrace mx-2">
+    <img src="https://image.freepik.com/free-vector/staycation-rooftop-terrace-with-friends_23-2148677240.jpg" alt="Image of rooftop party">
+    <p class="p-2">Enjoy your party</p>
+  </div>
 </div>
