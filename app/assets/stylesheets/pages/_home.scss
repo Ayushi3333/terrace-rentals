@@ -32,9 +32,9 @@
   }
   
   .btn-height {
-    height: 48px;
-    width: 48px;
-    padding-left: 16px;
+    height: 40px;
+    width: 40px;
+    padding-left: 13px;
   }
   
   .search-form-control {
@@ -44,9 +44,9 @@
   
   .search-form-control .btn {
     position: absolute;
-    top: 0px;
+    top: 4px;
     bottom: 79px;
-    right: -1px;
+    right: 6px;
     border-radius: 50%
   }
   
@@ -79,6 +79,13 @@
   }
 
   .instructions {
-    display: block;
+    display: block !important;
   }
+}
+
+@media screen and (max-width: 1200px){
+  .instructions {
+    display: block !important;
+  }
+
 }
