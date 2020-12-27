@@ -11,4 +11,11 @@ class Terrace < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  def rating
+    return 0 if self.reviews.empty?
+
+    total = self.reviews.sum(:rating)
+    total / self.reviews.count
+  end
 end

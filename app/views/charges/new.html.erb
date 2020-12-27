@@ -1,0 +1,35 @@
+<%= form_tag booking_charges_path(@booking) do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <div class="container mt-3">
+      <h4>Confirm and pay</h4>
+      <div class="booking-card d-flex justify-content-start">
+        <%= cl_image_tag( @booking.terrace.photos.first.key )%>
+        <div class="p-3">
+          <h5 class="card-title"><%= link_to @booking.terrace.title, terrace_path(@booking.terrace), class:"link-color" %></h5>
+          <p><%= @booking.status %></p>
+          <p class="card-text">Date: <%= @booking.date.strftime("%d %b, %Y") %></p>
+          <label class="amount">
+            <span>Amount: €<%= @booking.terrace.price %></span>
+          </label>
+        </div>
+      </div>
+    
+  </article>
+
+<input class="button-rounded my-3 pay-btn fixed-button" type="submit" value="Pay now" name="commit">
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    const paymentButton = document.querySelector(".pay-btn");
+    paymentButton.addEventListener('click', () => {
+      const stripe = Stripe('<%= ENV['PUBLISHABLE_KEY'] %>');
+      stripe.redirectToCheckout({
+        sessionId: '<%= @booking.checkout_session_id %>'
+      });
+    });
+  </script>
+<% end %>

@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get '/bookings/:id/confirmation', to: 'bookings#confirmation', as: :confirmation
   resources :terraces do
     resources :reviews, only: [:new, :create]
     resources :bookings, only: [:show, :new, :create]
   end
-  resources :bookings, only: [:index, :destroy]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :bookings do
+    resources :charges, only: [:new, :create]
+  end
+
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 end

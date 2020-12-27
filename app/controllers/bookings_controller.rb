@@ -14,10 +14,15 @@ class BookingsController < ApplicationController
     @booking.terrace = @terrace
     @booking.user = current_user
     if @booking.save
-      redirect_to bookings_path
+      redirect_to new_booking_charge_path(@booking)
     else
       render :new
     end
+  end
+
+  def confirmation
+    @booking = Booking.find(params[:id])
+    @terrace = @booking.terrace
   end
 
   private

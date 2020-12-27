@@ -10,6 +10,11 @@
                     <p class="card-title"><%= link_to terrace.title, terrace_path(terrace), class:"link-color" %></p>
                     <p>€<%= terrace.price %></p>                  
                   </div>
+                  <% if terrace.reviews.count == 0 %>
+                    <p>No reviews yet</p>
+                  <% else %>
+                    <p><% terrace.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+                  <% end %>
                   <p class="mb-1"><i class="fas fa-ruler"></i>  <%= terrace.size %>m²</p>
                 </div>
             </div>
