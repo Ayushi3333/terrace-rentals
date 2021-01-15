@@ -1,6 +1,8 @@
 class TerracesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  
   def index
-    @terraces = Terrace.all
+    @terraces = policy_scope(Terrace).all
     if params[:query].present?
       @markers = @terraces.near(params[:query]).geocoded.map do |terrace|
         {
@@ -20,9 +22,9 @@ class TerracesController < ApplicationController
     end
 
     if params[:query].present?
-      @terraces = Terrace.near(params[:query])
+      @terraces = policy_scope(Terrace).near(params[:query])
     else
-      @terraces = Terrace.all
+      @terraces = policy_scope(Terrace).all
     end
   end
 
