@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
   def new
     @booking = Booking.find(params[:booking_id])
     @terrace = @booking.terrace
-    Stripe.api_key = ENV['PUBLISHABLE_KEY']
+    Stripe.api_key = ENV['SECRET_KEY']
 
     @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
