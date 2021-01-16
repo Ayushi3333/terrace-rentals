@@ -58,8 +58,12 @@
       <%= f.input :rating, collection: 1..5 %>
       <%= f.button :submit, class:"btn btn-flat mb-3" %>
     <% end %>
+    <% if policy(@terrace).edit? %>
      <%= link_to "Update terrace details", edit_terrace_path(@terrace.id) %>
+    <% end %>
+    <% if policy(@terrace).destroy? %>
       <p><%= link_to "Delete terrace", terrace_path(@terrace.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
+    <% end %>
     </div>
       <div id="map" class="show-map pr-3 mt-3 col-lg-6 col-sm-6"
       data-markers="<%= @markers.to_json %>"

@@ -1,6 +1,6 @@
 class TerracesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  
+
   def index
     @terraces = policy_scope(Terrace).all
     if params[:query].present?
@@ -44,6 +44,8 @@ class TerracesController < ApplicationController
 
   def create
     @terrace = Terrace.new(terrace_params)
+    @terrace.user = current_user
+    authorize @terrace
     if @terrace.save
       redirect_to terrace_path(@terrace.id)
     else
@@ -53,6 +55,7 @@ class TerracesController < ApplicationController
 
   def edit
     @terrace = Terrace.find(params[:id])
+    authorize @terrace
   end
 
   def update
@@ -60,6 +63,7 @@ class TerracesController < ApplicationController
     @terrace.update(terrace_params)
 
     redirect_to terrace_path(@terrace.id)
+    authorize @terrace
   end
 
   def destroy
@@ -67,6 +71,7 @@ class TerracesController < ApplicationController
     @terrace.destroy
 
     redirect_to terraces_path
+    authorize @terrace
   end
 
   private
