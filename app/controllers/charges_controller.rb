@@ -20,7 +20,7 @@ class ChargesController < ApplicationController
       }],
       mode: 'payment',
       success_url: "https://terracerentals.herokuapp.com/bookings/#{@booking.id}/confirmation",
-      cancel_url: root_url
+      cancel_url: "https://terracerentals.herokuapp.com/"
       # For now leave these URLs as placeholder values.
       #
       # Later on in the guide, you'll create a real success page, but no need to
