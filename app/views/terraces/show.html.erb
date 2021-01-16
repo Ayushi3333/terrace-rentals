@@ -58,10 +58,10 @@
       <%= f.input :rating, collection: 1..5 %>
       <%= f.button :submit, class:"btn btn-flat mb-3" %>
     <% end %>
-    <% if policy(@terrace).edit? %>
+    <% if policy(@terrace).edit? && user_signed_in? %>
      <%= link_to "Update terrace details", edit_terrace_path(@terrace.id) %>
     <% end %>
-    <% if policy(@terrace).destroy? %>
+    <% if policy(@terrace).destroy? && user_signed_in? %>
       <p><%= link_to "Delete terrace", terrace_path(@terrace.id), method: :delete, data: { confirm: "Are you sure?" } %></p>
     <% end %>
     </div>

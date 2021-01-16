@@ -20,16 +20,17 @@
       </div>
     
   </article>
-
-<input class="button-rounded my-3 pay-btn fixed-button" type="submit" value="Pay now" name="commit">
-  <script src="https://js.stripe.com/v3/"></script>
-  <script>
-    const paymentButton = document.querySelector(".pay-btn");
-    paymentButton.addEventListener('click', () => {
-      const stripe = Stripe('<%= ENV['PUBLISHABLE_KEY'] %>');
-      stripe.redirectToCheckout({
-        sessionId: '<%= @booking.checkout_session_id %>'
-      });
-    });
-  </script>
+  <div class="container">
+    <input class="btn btn-flat my-3 pay-btn fixed-button" type="submit" value="Pay now" name="commit">
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        const paymentButton = document.querySelector(".pay-btn");
+        paymentButton.addEventListener('click', () => {
+          const stripe = Stripe('<%= ENV['PUBLISHABLE_KEY'] %>');
+          stripe.redirectToCheckout({
+            sessionId: '<%= @booking.checkout_session_id %>'
+          });
+        });
+      </script>
+  </div>
 <% end %>
