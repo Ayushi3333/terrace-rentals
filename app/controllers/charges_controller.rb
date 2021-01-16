@@ -5,7 +5,7 @@ class ChargesController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @terrace = @booking.terrace
 
-    session = Stripe::Checkout::Session.create({
+    @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
         price_data: {
@@ -18,13 +18,13 @@ class ChargesController < ApplicationController
         quantity: 1
       }],
       mode: 'payment',
+      success_url: 'https://terracerentals.herokuapp.com/bookings',
+      cancel_url: root_url
       # For now leave these URLs as placeholder values.
       #
       # Later on in the guide, you'll create a real success page, but no need to
       # do it yet.
-      success_url: confirmation_path(@booking),
-      cancel_url: root_url
     })
-    @booking.update(checkout_session_id: session.id)
+    @booking.update(checkout_session_id: @session.id)
   end
 end
