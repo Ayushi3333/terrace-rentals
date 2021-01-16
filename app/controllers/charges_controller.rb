@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
   def new
     @booking = Booking.find(params[:booking_id])
     @terrace = @booking.terrace
-
+    Stripe.api_key = ENV['SECRET_KEY']
     @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
@@ -13,12 +13,12 @@ class ChargesController < ApplicationController
           product_data: {
             name: @terrace.title
           },
-          unit_amount: @terrace.price
+          unit_amount: @terrace.price * 100
         },
         quantity: 1
       }],
       mode: 'payment',
-      success_url: 'https://terracerentals.herokuapp.com/bookings',
+      success_url: "https://terracerentals.herokuapp.com/bookings/#{@booking.id}/confirmation",
       cancel_url: root_url
       # For now leave these URLs as placeholder values.
       #
