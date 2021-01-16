@@ -28,4 +28,9 @@ class ChargesController < ApplicationController
     })
     @booking.update(checkout_session_id: @session.id)
   end
+
+  def create
+    @booking = Booking.find(params[:booking_id])
+    @terrace = @booking.terrace
+  end
 end
