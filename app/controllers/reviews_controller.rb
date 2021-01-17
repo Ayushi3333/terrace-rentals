@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.terrace = @terrace
     @review.user = current_user
+    raise
     if @review.save
       redirect_to terrace_path(@terrace)
     else
