@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Hello <%= @user.full_name %>!</h1>
+    <% if current_user.photo.present? %>
+      <img src="<%= cl_image_path(@user.photo.key) %>" alt="Profile picture" class="profile-picture">
+    <% else %>
+         <img src="https://cdn2.iconfinder.com/data/icons/circle-avatars-1/128/039_girl_avatar_profile_woman_headband-512.png", class="profile-picture">
+    <% end %>
+    <h4>Your bio</h4>
+    <p><%= @user.description %></p>
+    <%= link_to "Edit profile", edit_user_path(@user) %>
+</div>

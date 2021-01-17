@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   end
 
   mount StripeEvent::Engine, at: '/stripe-webhooks'
+  resources :users, only: [:show, :edit, :update]
 end
