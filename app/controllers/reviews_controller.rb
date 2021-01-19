@@ -1,18 +1,25 @@
 class ReviewsController < ApplicationController
   def new
-    @review = Review.new
+    @terrace = Terrace.find(params[:terrace_id])
+    @review = Review.new(review_params)
+    @review.terrace = @terrace
+    authorize @review
   end
 
   def create
     @terrace = Terrace.find(params[:terrace_id])
-    @review = Review.new(review_params)
-    @review.terrace = @terrace
-    @review.user = current_user
-    raise
-    if @review.save
-      redirect_to terrace_path(@terrace)
+    if show_review
+      @review = Review.new(review_params)
+      @review.terrace = @terrace
+      @review.user = current_user
+      if @review.save
+        redirect_to terrace_path(@terrace)
+      else
+        render 'terraces/show'
+      end
     else
-      render 'terraces/show'
+      flash[:alert] = "You cannot review your own terrace"
+      redirect_to terrace_path(@terrace)
     end
   end
 
@@ -20,5 +27,9 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:content, :rating)
+  end
+
+  def show_review
+    Terrace.find(params[:terrace_id]).user_id != current_user.id
   end
 end

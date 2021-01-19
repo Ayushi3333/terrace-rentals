@@ -53,10 +53,10 @@
         </div>
       <% end %>
     <% end %>
-    <%= simple_form_for [ @terrace, @review ], remote: true do |f| %>
-      <%= f.input :content, as: :text %>
-      <%= f.input :rating, collection: 1..5 %>
-      <%= f.button :submit, class:"btn btn-flat mb-3" %>
+      <%= simple_form_for [ @terrace, @review ] do |f| %>
+        <%= f.input :content, as: :text %>
+        <%= f.input :rating, collection: 1..5 %>
+        <%= f.button :submit, class:"btn btn-flat mb-3" %>
     <% end %>
     <% if policy(@terrace).edit? && user_signed_in? %>
      <%= link_to "Update terrace details", edit_terrace_path(@terrace.id) %>

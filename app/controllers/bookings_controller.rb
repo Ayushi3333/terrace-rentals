@@ -13,10 +13,10 @@ class BookingsController < ApplicationController
     @terrace = Terrace.find(params[:terrace_id])
     @booking.terrace = @terrace
     @booking.user = current_user
-    if @booking.save
+    if @booking.save && @booking.date >= Date.today
       redirect_to new_booking_charge_path(@booking)
     else
-      render :new
+      booking_error
     end
   end
 
@@ -29,5 +29,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:date)
+  end
+
+  def booking_error
+    flash[:alert] = "Please choose a date in the future"
+    redirect_to terrace_path(@terrace)
   end
 end

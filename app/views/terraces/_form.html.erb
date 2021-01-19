@@ -1,5 +1,5 @@
 <h4><strong>Book this rooftop now!</strong></h4>
 <%= simple_form_for [@terrace, @booking] do |b| %>
-  <%= b.input :date, label:'Pick a date', as: :date %>
+  <%= b.input :date, label:'Pick a date', as: :date, start_year: Date.today.year,:order => [ :day, :month, :year] %>
   <%= b.button :submit, class: "btn-flat" %>
 <% end %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/bookings/:id/confirmation', to: 'bookings#confirmation', as: :confirmation
   resources :terraces do
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: :create
     resources :bookings, only: [:show, :new, :create]
   end
   resources :bookings do
