@@ -12,6 +12,7 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="my-bookings" role="tabpanel" aria-labelledby="my-bookings-tab">
       <% @bookings.each do |booking| %>
+        <% if booking.terrace_id != Terrace.find_by(user_id: current_user).id %>
           <div class="booking-card d-flex justify-content-start mt-3">
             <%= cl_image_tag( booking.terrace.photos.first.key )%>
             <div class="p-3">
@@ -21,19 +22,23 @@
               <p class="card-text">Status: <%= booking.status %></p>
             </div>
           </div>
+        <% end %>
       <% end %>
     </div>
     <div class="tab-pane fade" id="booking-requests" role="tabpanel" aria-labelledby="booking-requests-tab">
       <% @bookings.each do |booking| %>
-          <div class="booking-card d-flex justify-content-start mt-3">
+        <% if booking.terrace_id == Terrace.find_by(user_id: current_user).id %>
+          <div class="booking-card d-flex justify-content-start mt-3" id="booking-card-height">
             <%= cl_image_tag( booking.terrace.photos.first.key )%>
             <div class="p-3">
               <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), 
               class:"link-color" %></h5>
               <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
+              <p class="card-text">Booked by: <%= booking.user.full_name %></p>
               <p class="card-text">Status: <%= booking.status %></p>
             </div>
           </div>
+        <% end %>
       <% end %>
     </div>
   </div>

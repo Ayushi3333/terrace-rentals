@@ -14,8 +14,13 @@
     margin-bottom: 15px;
 }
 
+#booking-card-height {
+    height: 200px;
+}
+
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     color: white;
+    font-weight: bold;
     background-color: #bd00ff;
     border-radius: 3px;
 }
