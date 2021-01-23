@@ -1,7 +1,8 @@
 <div class="container">
   <h2>Thanks, you paid € <%= @booking.terrace.price %>!</h2>
   <div class="container pt-3">
-  <h2 class="">Your booking is confirmed! </h2>
+  <h2 class="">Your booking request has reached the owner! </h2>
+  <p>If the owner decides to accept your booking, the payment will be processed</p>
   <h5 class="pt-2">Rooftop selected: </h5>
   <div class="booking-card d-flex justify-content-start">
     <%= cl_image_tag( @booking.terrace.photos.first.key )%>

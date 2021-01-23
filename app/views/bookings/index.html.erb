@@ -12,7 +12,7 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="my-bookings" role="tabpanel" aria-labelledby="my-bookings-tab">
       <% @bookings.each do |booking| %>
-        <% if Terrace.find_by(user_id: current_user).nil? || booking.terrace_id != Terrace.find_by(user_id: current_user).id %>
+        <% if booking.user_id == current_user.id %>
           <div class="booking-card d-flex justify-content-start mt-3">
             <%= cl_image_tag( booking.terrace.photos.first.key )%>
             <div class="p-3">
