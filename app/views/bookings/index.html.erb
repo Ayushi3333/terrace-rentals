@@ -34,8 +34,12 @@
               <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), 
               class:"link-color" %></h5>
               <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
-              <p class="card-text">Booked by: <%= booking.user.full_name %></p>
+              <p class="card-text">Booked by: <%= link_to booking.user.full_name, user_path(booking.user) %></p>
               <p class="card-text">Status: <%= booking.status %></p>
+              <% if booking.status != "Accepted" %>
+                <%= link_to "Accept", accepted_path(booking), class: "btn btn-flat mr-2 ml-0" %>
+              <% end %>
+              <%= link_to "Decline", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" },  class: "btn btn-flat" %>
             </div>
           </div>
         <% end %>
