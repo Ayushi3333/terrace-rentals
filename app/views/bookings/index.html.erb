@@ -12,7 +12,7 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="my-bookings" role="tabpanel" aria-labelledby="my-bookings-tab">
       <% @bookings.each do |booking| %>
-        <% if booking.terrace_id != Terrace.find_by(user_id: current_user).id %>
+        <% if Terrace.find_by(user_id: current_user).nil? || booking.terrace_id != Terrace.find_by(user_id: current_user).id %>
           <div class="booking-card d-flex justify-content-start mt-3">
             <%= cl_image_tag( booking.terrace.photos.first.key )%>
             <div class="p-3">
@@ -27,7 +27,7 @@
     </div>
     <div class="tab-pane fade" id="booking-requests" role="tabpanel" aria-labelledby="booking-requests-tab">
       <% @bookings.each do |booking| %>
-        <% if booking.terrace_id == Terrace.find_by(user_id: current_user).id %>
+        <% if Terrace.find_by(user_id: current_user).present? && booking.terrace_id == Terrace.find_by(user_id: current_user).id %>
           <div class="booking-card d-flex justify-content-start mt-3" id="booking-card-height">
             <%= cl_image_tag( booking.terrace.photos.first.key )%>
             <div class="p-3">
