@@ -1,28 +1,40 @@
 <div class="container">
- <div id="myBookings">
-    <h2>Bookings made by you</h2>
-    <% @bookings.each do |booking| %>
-        <div class="booking-card d-flex justify-content-start">
-          <%= cl_image_tag( booking.terrace.photos.first.key )%>
-          <div class="p-3">
-            <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), class:"link-color" %></h5>
-            <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
-            <p class="card-text">Status: <%= booking.status %></p>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="my-bookings-tab" data-bs-toggle="tab" href="#my-bookings" 
+      role="tab" aria-controls="my-bookings" aria-selected="true">My bookings</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="booking-requests-tab" data-bs-toggle="tab" href="#booking-requests" 
+      role="tab" aria-controls="booking-requests" aria-selected="false">Booking Requests</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="my-bookings" role="tabpanel" aria-labelledby="my-bookings-tab">
+      <% @bookings.each do |booking| %>
+          <div class="booking-card d-flex justify-content-start mt-3">
+            <%= cl_image_tag( booking.terrace.photos.first.key )%>
+            <div class="p-3">
+              <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), 
+              class:"link-color" %></h5>
+              <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
+              <p class="card-text">Status: <%= booking.status %></p>
+            </div>
           </div>
-        </div>
-    <% end %>
-  </div>
-  <div>
-    <h2><button onclick="toggleEvent()">Booking requests</h2>
-    <% @bookings.each do |booking| %>
-        <div class="booking-card d-flex justify-content-start">
-          <%= cl_image_tag( booking.terrace.photos.first.key )%>
-          <div class="p-3">
-            <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), class:"link-color" %></h5>
-            <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
-            <p class="card-text">Status: <%= booking.status %></p>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="booking-requests" role="tabpanel" aria-labelledby="booking-requests-tab">
+      <% @bookings.each do |booking| %>
+          <div class="booking-card d-flex justify-content-start mt-3">
+            <%= cl_image_tag( booking.terrace.photos.first.key )%>
+            <div class="p-3">
+              <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), 
+              class:"link-color" %></h5>
+              <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
+              <p class="card-text">Status: <%= booking.status %></p>
+            </div>
           </div>
-        </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
