@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Hello <%= @user.full_name %>!</h1>
+    <h1><%= @user.full_name %></h1>
     <% if current_user.photo.present? %>
       <img src="<%= cl_image_path(@user.photo.key) %>" alt="Profile picture" class="profile-picture">
     <% else %>

@@ -1,31 +1,16 @@
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="my-bookings-tab" data-bs-toggle="tab" href="#my-bookings" 
-      role="tab" aria-controls="my-bookings" aria-selected="true">My bookings</a>
+      <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="booking-requests-tab" data-bs-toggle="tab" href="#booking-requests" 
+      role="tab" aria-controls="booking-requests" aria-selected="false">Booking Requests</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="booking-requests-tab" data-bs-toggle="tab" href="#booking-requests" 
-      role="tab" aria-controls="booking-requests" aria-selected="false">Booking Requests</a>
+      <a class="nav-link" id="my-bookings-tab" data-bs-toggle="tab" href="#my-bookings" 
+      role="tab" aria-controls="my-bookings" aria-selected="true">My bookings</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="my-bookings" role="tabpanel" aria-labelledby="my-bookings-tab">
-      <% @bookings.each do |booking| %>
-        <% if booking.user_id == current_user.id %>
-          <div class="booking-card d-flex justify-content-start mt-3">
-            <%= cl_image_tag( booking.terrace.photos.first.key )%>
-            <div class="p-3">
-              <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), 
-              class:"link-color" %></h5>
-              <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
-              <p class="card-text">Status: <%= booking.status %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="tab-pane fade" id="booking-requests" role="tabpanel" aria-labelledby="booking-requests-tab">
+    <div class="tab-pane fade show active" id="booking-requests" role="tabpanel" aria-labelledby="booking-requests-tab">
       <% @bookings.each do |booking| %>
         <% if Terrace.find_by(user_id: current_user).present? && booking.terrace_id == Terrace.find_by(user_id: current_user).id %>
           <div class="booking-card d-flex justify-content-start mt-3" id="booking-card-height">
@@ -40,6 +25,21 @@
                 <%= link_to "Accept", accepted_path(booking), class: "btn btn-flat mr-2 ml-0" %>
               <% end %>
               <%= link_to "Decline", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" },  class: "btn btn-flat" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="my-bookings" role="tabpanel" aria-labelledby="my-bookings-tab">
+      <% @bookings.each do |booking| %>
+        <% if booking.user_id == current_user.id %>
+          <div class="booking-card d-flex justify-content-start mt-3">
+            <%= cl_image_tag( booking.terrace.photos.first.key )%>
+            <div class="p-3">
+              <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), 
+              class:"link-color" %></h5>
+              <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
+              <p class="card-text">Status: <%= booking.status %></p>
             </div>
           </div>
         <% end %>
