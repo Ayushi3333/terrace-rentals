@@ -9,20 +9,33 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
     @terrace = Terrace.find(params[:terrace_id])
-    @booking.terrace = @terrace
-    @booking.user = current_user
-    if @booking.save && @booking.date >= Date.today
-      redirect_to new_booking_charge_path(@booking)
+    if booking_valid
+      @booking = Booking.new(booking_params)
+      @booking.terrace = @terrace
+      @booking.user = current_user
+      if @booking.save && @booking.date >= Date.today
+        redirect_to new_booking_charge_path(@booking)
+      else
+        booking_error
+      end
     else
-      booking_error
+      flash[:alert] = "You cannot book your own terrace"
+      redirect_to terrace_path(@terrace)
     end
   end
 
   def confirmation
     @booking = Booking.find(params[:id])
     @terrace = @booking.terrace
+  end
+
+  def accepted
+    @booking = Booking.find(params[:id])
+    @booking.status = "accepted"
+    @booking.save
+
+    redirect_to bookings_path
   end
 
   private
@@ -34,5 +47,9 @@ class BookingsController < ApplicationController
   def booking_error
     flash[:alert] = "Please choose a date in the future"
     redirect_to terrace_path(@terrace)
+  end
+
+  def booking_valid
+    Terrace.find(params[:terrace_id]).user_id != current_user.id
   end
 end

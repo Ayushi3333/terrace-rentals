@@ -1,19 +1,43 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "toggler.js" %>
+<% end %>
 
 <div class="container">
-  <h2>Your bookings</h2>
-  <% @bookings.each do |booking| %>
-      <div class="booking-card d-flex justify-content-start">
-        <%= cl_image_tag( booking.terrace.photos.first.key )%>
-        <div class="p-3">
-          <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), class:"link-color" %></h5>
-          <% if booking.terrace.reviews.count == 0 %>
-            <p>No reviews yet</p>
-          <% else %>
-            <p><% booking.terrace.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
-          <% end %>
-          <p class="card-text"><%= booking.date.strftime("%d %b, %Y") %></p>
-          <p><%= booking.status %></p>
+ <div id="myBookings">
+    <h2>Bookings made by you</h2>
+    <% @bookings.each do |booking| %>
+        <div class="booking-card d-flex justify-content-start">
+          <%= cl_image_tag( booking.terrace.photos.first.key )%>
+          <div class="p-3">
+            <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), class:"link-color" %></h5>
+            <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
+            <p class="card-text">Status: <%= booking.status %></p>
+          </div>
         </div>
-      </div>
-  <% end %>
+    <% end %>
+  </div>
+  <div>
+    <h2><button onclick="toggleEvent()">Booking requests</h2>
+    <% @bookings.each do |booking| %>
+        <div class="booking-card d-flex justify-content-start">
+          <%= cl_image_tag( booking.terrace.photos.first.key )%>
+          <div class="p-3">
+            <h5 class="card-title"><%= link_to booking.terrace.title, terrace_path(booking.terrace), class:"link-color" %></h5>
+            <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
+            <p class="card-text">Status: <%= booking.status %></p>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </div>
+<script>
+function toggleEvent() {
+  let x = document.getElementById("myBookings");
+  console.log(x.innerHTML)
+  if (x.innerHTML === "") {
+    x.innerHTML = "Swapped text!";
+  } else {
+    x.innerHTML = "Hello";
+  }
+}
+</script>

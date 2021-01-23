@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get '/bookings/:id/confirmation', to: 'bookings#confirmation', as: :confirmation
+  get 'bookings/accepted', to: 'bookings#accepted', as: :accepted
   resources :terraces do
     resources :reviews, only: :create
     resources :bookings, only: [:show, :new, :create]
