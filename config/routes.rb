@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/bookings/:id/confirmation', to: 'bookings#confirmation', as: :confirmation
   get 'bookings/:id/accepted', to: 'bookings#accepted', as: :accepted
+  get 'invoice', to: 'invoices#show'
   resources :terraces do
     resources :reviews, only: :create
     resources :bookings, only: [:show, :new, :create]

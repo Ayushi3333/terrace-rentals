@@ -40,6 +40,9 @@
               class:"link-color" %></h5>
               <p class="card-text">Booked for: <%= booking.date.strftime("%d %b, %Y") %></p>
               <p class="card-text">Status: <%= booking.status %></p>
+              <% if booking.status == "Accepted" %>
+                <%= link_to "Generate Invoice", invoice_path %>
+              <% end %>
             </div>
           </div>
         <% end %>
